@@ -1,0 +1,4 @@
+varsFiles/
+.terraform*
+.vscode*
+terraform*
