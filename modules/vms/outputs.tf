@@ -1,4 +1,4 @@
-#Send out vm network interface out of the module:
+#Send out vm network interface out of the module and the user and password:
 
 output "nic_id" {
   value = azurerm_network_interface.webApp.id
