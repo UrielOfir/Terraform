@@ -1,10 +1,9 @@
-#calling to a module to build vms (depends on the machines_ammount variable)
+#calling to a module to build vms for running the app (depends on the machines_ammount variable)
 
 resource "azurerm_resource_group" "VMs" {
   name     = "${var.prefix}-VMs-resources"
   location = "eastus"
 }
-
 
 module "vms" {
   source         = "./modules/vms"
@@ -16,3 +15,5 @@ module "vms" {
   subnet_id      = azurerm_subnet.webApp-tier.id
   depends_on     = [azurerm_lb.lb]
 }
+
+

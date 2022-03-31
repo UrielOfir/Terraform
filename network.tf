@@ -1,4 +1,4 @@
-#building 2 subnet - 
+#building 3 subnet - 1. web tier - 2. db tier - 3. ansible tier
 
 resource "azurerm_resource_group" "vnet" {
   name     = "${var.prefix}-vnet-resources"
@@ -22,7 +22,7 @@ resource "azurerm_subnet" "webApp-tier" {
 }
 
 resource "azurerm_network_security_group" "webApp-nsg" {
-  name                = "nsg1"
+  name                = "webAppp-nsg"
   location            = azurerm_resource_group.vnet.location
   resource_group_name = azurerm_resource_group.vnet.name
 
@@ -96,7 +96,19 @@ resource "azurerm_network_security_group" "DB-nsg" {
     protocol                   = "Tcp"
     source_port_range          = "5432"
     destination_port_range     = "5432"
-    source_address_prefix      = "VirtualNetwork"
+    source_address_prefix      = "10.0.1.0/24"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "blockOthers"
+    priority                   = 120
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 }

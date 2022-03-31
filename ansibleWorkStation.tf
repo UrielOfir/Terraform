@@ -1,7 +1,7 @@
 # internal workstation to connect the app machines
 
 resource "azurerm_resource_group" "ansible" {
-  name     = "ansible-resources"
+  name     = "${var.prefix}-ansible-resources"
   location = "eastus"
 }
 
@@ -26,7 +26,7 @@ resource "azurerm_network_interface" "ansible" {
 }
 
 resource "azurerm_linux_virtual_machine" "ansible" {
-  name                  = "ansibleVM"
+  name                  = "${var.prefix}-ansibleVM"
   location              = azurerm_resource_group.ansible.location
   resource_group_name   = azurerm_resource_group.ansible.name
   network_interface_ids = [azurerm_network_interface.ansible.id]
