@@ -13,6 +13,7 @@ With additional machine to run ansible and configure the other machine.
 1. Conncte your Azure CLI to your Azure accont-`az login`.
 2. Add a directory named `vasrsFiles` to the project directory.
 3. Add the files `production.tfvars` and `staging.tfvars` to the `vasrsFiles` directory.
+
     3.1 Each tfvars file should contain this information:
     ```
     prefix="<enviroment prefix>"
@@ -30,7 +31,7 @@ so you can run the command `terraform apply -var-file varsFiles/staging.tfvars` 
 6. Run `terraform worspace new production` to build the production system.
 7. Run the command `terraform apply -var-file varsFiles/production.tfvars` to build the production system.
 8. In Azure portal get the pulic IP of the machine where you run ansible.
-9. You can use the ansible project to run the Weight Tracker app on your enviroment.
+9. You can use the [ansible project](https://github.com/UrielOfir/ansible) to run the Weight Tracker app on your enviroment.
 
 # Terraform backend on azure storage
 To upload the terraform state to azure storage, you need to cancel the comment inside the "backetStateConfiguration.tf" file.
