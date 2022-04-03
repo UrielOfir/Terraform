@@ -101,7 +101,7 @@ resource "azurerm_network_security_group" "DB-nsg" {
   resource_group_name = azurerm_resource_group.vnet.name
 
   security_rule {
-    name                       = "db"
+    name                       = "db-internal newtork"
     priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
@@ -112,15 +112,15 @@ resource "azurerm_network_security_group" "DB-nsg" {
     destination_address_prefix = "*"
   }
 
-  security_rule {
-    name                       = "blockOthers"
-    priority                   = 120
+    security_rule {
+    name                       = "db-loadBalancer"
+    priority                   = 115
     direction                  = "Inbound"
-    access                     = "Deny"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "5432"
+    destination_port_range     = "5432"
+    source_address_prefix      = azurerm_public_ip.public_ip.ip_address
     destination_address_prefix = "*"
   }
 }

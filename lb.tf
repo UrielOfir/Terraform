@@ -1,4 +1,4 @@
-#This file manage the lb infrastructure:
+#This file manage the load balancer infrastructure:
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "PublicIPForLB"
