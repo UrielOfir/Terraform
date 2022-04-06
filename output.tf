@@ -16,10 +16,10 @@ output "ansible_vm_detalis" {
   sensitive = true
 }
 
-output "postgress_details" {
-  value = {
-    admin_username=azurerm_postgresql_flexible_server.db.administrator_login
-    admin_password=azurerm_postgresql_flexible_server.db.administrator_password
-  }
-  sensitive = true
-}
+# output "postgress_details" {
+#   value = {
+#     admin_username=azurerm_postgresql_flexible_server.db.administrator_login
+#     admin_password=azurerm_postgresql_flexible_server.db.administrator_password
+#   }
+#   sensitive = true
+# }

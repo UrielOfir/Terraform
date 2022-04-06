@@ -30,7 +30,7 @@ resource "azurerm_linux_virtual_machine" "ansible" {
   location              = azurerm_resource_group.ansible.location
   resource_group_name   = azurerm_resource_group.ansible.name
   network_interface_ids = [azurerm_network_interface.ansible.id]
-  size                  = "Standard_B1ls"
+  size                  = "Standard_B1s"
   admin_username        = var.ansible_username
   admin_password        = var.ansible_password
   disable_password_authentication = false
